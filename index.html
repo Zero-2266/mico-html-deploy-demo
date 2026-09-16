@@ -1,43 +1,22 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>服务均单时长分析报告 - 2026.09.15</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333}
-.header{background:linear-gradient(135deg,#1a73e8,#0d47a1);color:white;padding:32px 24px;text-align:center}
-.header h1{font-size:28px;margin-bottom:8px}
-.header p{opacity:0.85;font-size:14px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#333}
+.header{background:linear-gradient(135deg,#1a73e8,#0d47a1);color:white;padding:32px 24px;text-align:center}.header h1{font-size:28px;margin-bottom:8px}.header p{opacity:0.85;font-size:14px}
 .container{max-width:1200px;margin:0 auto;padding:20px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0}
 .card{background:white;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.08);text-align:center}
-.card .num{font-size:32px;font-weight:700;color:#1a73e8}
-.card .label{font-size:13px;color:#666;margin-top:4px}
+.card .num{font-size:32px;font-weight:700;color:#1a73e8}.card .label{font-size:13px;color:#666;margin-top:4px}
 .section{background:white;border-radius:12px;padding:24px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
 .section h2{font-size:18px;color:#1a73e8;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e8eaed}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:#f8f9fa;padding:10px 8px;text-align:left;border-bottom:2px solid #dee2e6;cursor:pointer;user-select:none;white-space:nowrap}
-th:hover{background:#e8eaed}
-th .sort-icon{margin-left:4px;font-size:10px;color:#999}
-td{padding:8px;border-bottom:1px solid #eee}
-tr:hover{background:#f0f7ff}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
-.badge-green{background:#e6f4ea;color:#137333}
-.badge-red{background:#fce8e6;color:#c5221f}
-.badge-yellow{background:#fef7e0;color:#b06000}
+th{background:#f8f9fa;padding:10px 8px;text-align:left;border-bottom:2px solid #dee2e6;cursor:pointer;user-select:none;white-space:nowrap}th:hover{background:#e8eaed}
+th .si{margin-left:4px;font-size:10px;color:#999}td{padding:8px;border-bottom:1px solid #eee}tr:hover{background:#f0f7ff}
+.fr{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.fr label{font-size:13px;color:#555}.fr select{padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px}
 .tip{text-align:center;color:#999;font-size:12px;margin-top:16px}
-.filter-row{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.filter-row label{font-size:13px;color:#555}
-.filter-row select,.filter-row input{padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px}
-</style>
-</head>
-<body>
-<div class="header">
-<h1>📊 服务均单时长分析报告</h1>
-<p>数据日期：2026-09-15 | 数据范围：湖北省 | 报告生成：2026-09-16 17:10</p>
-</div>
+</style></head><body>
+<div class="header"><h1>📊 服务均单时长分析报告</h1>
+<p>数据日期：2026-09-15 | 数据范围：湖北省 | 报告生成：2026-09-16 17:16</p></div>
 <div class="container">
 <div class="cards">
 <div class="card"><div class="num">492</div><div class="label">有效工单（业务完成）</div></div>
@@ -45,97 +24,65 @@ tr:hover{background:#f0f7ff}
 <div class="card"><div class="num">50</div><div class="label">合作商数量</div></div>
 <div class="card"><div class="num">125</div><div class="label">门店数量</div></div>
 </div>
-
-<div class="section">
-<h2>🏢 合作商均单时长排名</h2>
-<div class="filter-row">
-<label>最少单量：</label>
-<select id="pMinCount" onchange="renderPartners()">
-<option value="1">全部</option>
-<option value="5">≥5单</option>
-<option value="10" selected>≥10单</option>
-<option value="20">≥20单</option>
-</select>
-</div>
-<table id="partnerTable">
-<thead><tr>
-<th onclick="sortPartner('name')">合作商 <span class="sort-icon">⇅</span></th>
-<th onclick="sortPartner('count')">单量 <span class="sort-icon">⇅</span></th>
-<th onclick="sortPartner('avg')">均值(min) <span class="sort-icon">⇅</span></th>
-<th onclick="sortPartner('median')">中位数(min) <span class="sort-icon">⇅</span></th>
-<th onclick="sortPartner('min')">最短 <span class="sort-icon">⇅</span></th>
-<th onclick="sortPartner('max')">最长 <span class="sort-icon">⇅</span></th>
-</tr></thead>
-<tbody id="partnerBody"></tbody>
-</table>
-</div>
-
-<div class="section">
-<h2>🏪 门店均单时长排名</h2>
-<div class="filter-row">
-<label>最少单量：</label>
-<select id="sMinCount" onchange="renderStores()">
-<option value="3">≥3单</option>
-<option value="5" selected>≥5单</option>
-<option value="10">≥10单</option>
-</select>
-<label>合作商筛选：</label>
-<select id="sPartnerFilter" onchange="renderStores()"><option value="">全部</option></select>
-</div>
-<table id="storeTable">
-<thead><tr>
-<th onclick="sortStore('store')">门店 <span class="sort-icon">⇅</span></th>
-<th onclick="sortStore('partner')">合作商 <span class="sort-icon">⇅</span></th>
-<th onclick="sortStore('count')">单量 <span class="sort-icon">⇅</span></th>
-<th onclick="sortStore('avg')">均值(min) <span class="sort-icon">⇅</span></th>
-<th onclick="sortStore('median')">中位数(min) <span class="sort-icon">⇅</span></th>
-</tr></thead>
-<tbody id="storeBody"></tbody>
-</table>
-</div>
-
-<div class="tip">数据来源：20260916-服务均单时长（全量）明细 | 已剔除取消完成和不予受理工单</div>
-</div>
-
+<div class="section"><h2>🏢 合作商均单时长排名</h2>
+<div class="fr"><label>最少单量：</label><select id="pMinCount" onchange="renderPartners()">
+<option value="1">全部</option><option value="5">≥5单</option><option value="10" selected>≥10单</option><option value="20">≥20单</option>
+</select></div>
+<table><thead><tr>
+<th onclick="sortPartner('name')">合作商 <span class="si">⇅</span></th>
+<th onclick="sortPartner('count')">单量 <span class="si">⇅</span></th>
+<th onclick="sortPartner('avg')">均值(min) <span class="si">⇅</span></th>
+<th onclick="sortPartner('median')">中位数(min) <span class="si">⇅</span></th>
+<th onclick="sortPartner('min')">最短 <span class="si">⇅</span></th>
+<th onclick="sortPartner('max')">最长 <span class="si">⇅</span></th>
+</tr></thead><tbody id="partnerBody"></tbody></table></div>
+<div class="section"><h2>🏪 门店均单时长排名</h2>
+<div class="fr"><label>最少单量：</label><select id="sMinCount" onchange="renderStores()">
+<option value="3">≥3单</option><option value="5" selected>≥5单</option><option value="10">≥10单</option>
+</select><label>合作商筛选：</label><select id="sPartnerFilter" onchange="renderStores()"><option value="">全部</option></select></div>
+<table><thead><tr>
+<th onclick="sortStore('store')">门店 <span class="si">⇅</span></th>
+<th onclick="sortStore('partner')">合作商 <span class="si">⇅</span></th>
+<th onclick="sortStore('count')">单量 <span class="si">⇅</span></th>
+<th onclick="sortStore('avg')">均值(min) <span class="si">⇅</span></th>
+<th onclick="sortStore('median')">中位数(min) <span class="si">⇅</span></th>
+</tr></thead><tbody id="storeBody"></tbody></table></div>
+<div class="tip">数据来源：20260916-服务均单时长（全量）明细 | 已剔除取消完成和不予受理工单</div></div>
 <script>
-const partners = [{"name":"湖北盈泰寰宇通信工程有限公司","avg":16.4,"min":9.7,"median":16.4,"max":23.1,"count":2},{"name":"湖北因特微科技发展有限公司","avg":174.5,"min":0.2,"median":35.2,"max":5409.6,"count":39},{"name":"湖北省九广通讯有限责任公司","avg":35.2,"min":35.2,"median":35.2,"max":35.2,"count":1},{"name":"湖北展迅商贸有限公司","avg":84.6,"min":0.2,"median":84.6,"max":169,"count":2},{"name":"浠水九星通信有限公司","avg":28.8,"min":25.8,"median":28.8,"max":31.9,"count":2},{"name":"黄梅县炫翼商贸有限公司","avg":26.5,"min":26.5,"median":26.5,"max":26.5,"count":1},{"name":"京山市妍盈商贸有限公司","avg":32,"min":32,"median":32,"max":32,"count":1},{"name":"湖北鑫垦唯科技有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"武汉和众思创商贸发展有限公司","avg":163,"min":5.1,"median":45.9,"max":5775.1,"count":65},{"name":"湖北谷高通讯有限公司","avg":145.2,"min":0.2,"median":35.7,"max":4200.5,"count":41},{"name":"荆门帅昂商贸有限公司","avg":30.5,"min":0.2,"median":34.4,"max":63.4,"count":10},{"name":"湖北恒耀通信科技有限公司","avg":37.5,"min":0.2,"median":42,"max":70.2,"count":3},{"name":"来凤县灏诚科技有限公司","avg":174.8,"min":174.8,"median":174.8,"max":174.8,"count":1},{"name":"咸宁捷讯通电子有限公司","avg":23.7,"min":0.2,"median":23.7,"max":47.2,"count":2},{"name":"孝感市诚丰商贸有限责任公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"江陵县伟名商贸有限公司","avg":49.6,"min":49.6,"median":49.6,"max":49.6,"count":1},{"name":"小米之家商业有限公司","avg":432.6,"min":0.2,"median":0.2,"max":3172.1,"count":15},{"name":"武汉鑫隆世达商贸有限公司","avg":20.5,"min":0.2,"median":29.1,"max":32.2,"count":3},{"name":"钟祥市铭辉商贸有限公司","avg":526.8,"min":0.2,"median":526.8,"max":1053.4,"count":2},{"name":"麻城市云人汇新零售商贸有限公司","avg":1729.5,"min":1659.8,"median":1746.2,"max":1782.6,"count":3},{"name":"红安县超凡通讯器材有限公司","avg":5.9,"min":0.2,"median":0.2,"max":17.3,"count":3},{"name":"湖北讯华高新技术股份有限公司","avg":53.9,"min":0.2,"median":42.1,"max":994.1,"count":68},{"name":"谷城县云帆通讯数码有限公司","avg":1256.8,"min":41.5,"median":1319.5,"max":2409.4,"count":3},{"name":"武汉新兴连邦技术服务有限公司","avg":168.5,"min":5.8,"median":45.5,"max":4498.9,"count":74},{"name":"湖北尊驰科技有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"老河口市友联科技有限公司","avg":53,"min":53,"median":53,"max":53,"count":1},{"name":"枣阳市跨时空通讯有限公司","avg":506,"min":8.2,"median":44.7,"max":1465.1,"count":3},{"name":"湖北大业通信器材有限公司","avg":59.8,"min":39,"median":59.8,"max":80.6,"count":2},{"name":"公安县潺陵通讯设备有限公司","avg":33.4,"min":33.4,"median":33.4,"max":33.4,"count":1},{"name":"湖北辰龙科贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":6},{"name":"宜昌丰途商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"湖北凯新通信有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"十堰市乐讯商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"襄阳畅宇商贸有限公司","avg":953.4,"min":6.1,"median":35.8,"max":8565.9,"count":13},{"name":"湖北九鼎通信有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"潜江酷动数码设备有限公司","avg":33.2,"min":0.2,"median":30.8,"max":73.3,"count":13},{"name":"丹江口市宏米贸易有限公司","avg":760.4,"min":31.2,"median":760.4,"max":1489.6,"count":2},{"name":"应城市联达数码有限公司","avg":2794.5,"min":2794.5,"median":2794.5,"max":2794.5,"count":1},{"name":"嘉鱼县嘉联通讯有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"湖北夷达科技有限公司","avg":4.6,"min":0.2,"median":0.2,"max":26.6,"count":6},{"name":"湖北宇泽永业数码科技有限公司","avg":128.1,"min":0.2,"median":33.4,"max":4390.8,"count":46},{"name":"松滋市合一通信设备有限公司","avg":39.1,"min":31.5,"median":38.1,"max":47.8,"count":6},{"name":"利川汇众通信有限责任公司","avg":114.1,"min":114.1,"median":114.1,"max":114.1,"count":1},{"name":"恩施州通信广场有限责任公司","avg":32.2,"min":0.2,"median":23.4,"max":107.1,"count":13},{"name":"孝感飞耀通讯设备有限公司","avg":24.1,"min":0.2,"median":23.4,"max":48.7,"count":3},{"name":"武汉电信实业有限责任公司","avg":15.4,"min":0.2,"median":0.2,"max":74.9,"count":9},{"name":"英山县陆星通讯有限责任公司","avg":43.7,"min":19.3,"median":29.6,"max":96.2,"count":4},{"name":"蕲春国联手机通讯有限公司","avg":1575.4,"min":1451.4,"median":1575.4,"max":1699.5,"count":2},{"name":"襄阳庆来电子科技有限公司","avg":35.2,"min":0.2,"median":32,"max":76.3,"count":6},{"name":"武汉和信通商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1}];
-const stores = [{"count":16,"median":38.7,"avg":42.7,"store":"小米之家湖北宜昌西陵区东山大道专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":4,"median":40.4,"avg":63.7,"store":"小米之家湖北随州曾都区舜井大道专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":13,"median":38,"avg":58.1,"store":"小米之家湖北十堰市人民北路服销一体专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":12,"median":40.1,"avg":42.6,"store":"小米之家湖北武汉洪山区创意天地服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":5,"median":74.5,"avg":72.8,"store":"小米之家湖北武汉江夏区江夏大道电信专卖店","partner":"湖北谷高通讯有限公司"},{"count":11,"median":42.1,"avg":44.7,"store":"小米之家湖北武汉黄陂区德成中心广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":4,"median":29.6,"avg":43.7,"store":"小米之家湖北省黄冈市英山县时代广场专卖店","partner":"英山县陆星通讯有限责任公司"},{"count":13,"median":58.1,"avg":506.1,"store":"小米之家湖北武汉武昌区紫阳广场专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":6,"median":63.7,"avg":1081.3,"store":"小米之家武汉大学店","partner":"小米之家商业有限公司"},{"count":5,"median":24.8,"avg":20.3,"store":"小米之家湖北鄂州市鄂城区驰恒国际广场专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":5,"median":36.5,"avg":42.2,"store":"小米之家湖北襄阳樊城区长虹路蓝光大厦专卖店","partner":"襄阳庆来电子科技有限公司"},{"count":8,"median":43.8,"avg":51.2,"store":"小米之家湖北武汉洪山区万科广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":7,"median":31.6,"avg":44.8,"store":"小米之家湖北孝感市长征路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":9,"median":62.4,"avg":529.6,"store":"小米之家湖北武汉洪山区大悦城专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":10,"median":38,"avg":46,"store":"小米之家湖北武汉江汉区越秀国金中心专卖店","partner":"湖北因特微科技发展有限公司"},{"count":12,"median":28.9,"avg":34.8,"store":"小米之家湖北恩施和润城购物中心专卖店","partner":"恩施州通信广场有限责任公司"},{"count":5,"median":52,"avg":51.2,"store":"小米之家湖北武汉汉阳区四新华发未来荟专卖店","partner":"湖北因特微科技发展有限公司"},{"count":7,"median":35,"avg":41.6,"store":"小米之家湖北武汉江夏区世达广场专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":38.1,"avg":39.1,"store":"小米之家荆州市松滋市步行街专卖店","partner":"松滋市合一通信设备有限公司"},{"count":3,"median":0.2,"avg":0.2,"store":"小米之家湖北宜昌西陵区大洋百货专卖店","partner":"湖北夷达科技有限公司"},{"count":19,"median":48,"avg":123.4,"store":"小米之家湖北武汉汉阳区海天欢乐购服销一体专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":8,"median":0.2,"avg":0.2,"store":"小米之家湖北黄石市黄石港区万达广场汽车体验专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":7,"median":36.4,"avg":62.3,"store":"小米之家湖北天门西湖路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":13,"median":59.4,"avg":163.4,"store":"小米之家洪山区珞喻路季佳PAI专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":8,"median":31,"avg":38.1,"store":"小米之家湖北武汉江岸区大智路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":5,"median":37.6,"avg":30.4,"store":"小米之家武汉武昌区销品茂专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":45.9,"avg":54.1,"store":"湖北武汉东西湖区199+服销一体","partner":"武汉新兴连邦技术服务有限公司"},{"count":8,"median":25.1,"avg":30.2,"store":"小米之家湖北武汉硚口区南国泛悦mall专卖店","partner":"湖北因特微科技发展有限公司"},{"count":4,"median":26.6,"avg":34.4,"store":"小米之家湖北省武汉市江汉区武汉江宸天街汽车体验店","partner":"武汉电信实业有限责任公司"},{"count":4,"median":47.4,"avg":54.2,"store":"小米之家湖北武汉江岸区季佳荟百步亭专卖店","partner":"湖北因特微科技发展有限公司"},{"count":10,"median":34.3,"avg":63.6,"store":"小米之家湖北武汉江汉区南国北都城市广场SOHO服销专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":4,"median":20.9,"avg":24.1,"store":"小米之家湖北武汉汉阳区江腾广场专卖店","partner":"湖北因特微科技发展有限公司"},{"count":13,"median":35.8,"avg":953.4,"store":"小米之家湖北省襄阳樊城区大庆西路专卖店","partner":"襄阳畅宇商贸有限公司"},{"count":3,"median":37.6,"avg":1822.8,"store":"小米之家湖北武汉黄陂区中心百货专卖店","partner":"湖北因特微科技发展有限公司"},{"count":45,"median":47.6,"avg":48.2,"store":"小米之家湖北黄石西塞山区武商购物中心专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":26,"median":50.5,"avg":323.3,"store":"小米之家湖北武汉洪山区光谷资本大厦","partner":"武汉新兴连邦技术服务有限公司"},{"count":3,"median":44.7,"avg":506,"store":"小米之家湖北襄阳枣阳通讯广场专卖店","partner":"枣阳市跨时空通讯有限公司"},{"count":4,"median":0.2,"avg":0.2,"store":"小米之家湖北武汉武昌区亲橙万象汇专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":95.3,"avg":232.7,"store":"小米之家湖北武汉青山区武商MALL众圆专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":3,"median":1746.2,"avg":1729.5,"store":"小米之家湖北黄冈麻城龙池桥街道融辉路授权店","partner":"麻城市云人汇新零售商贸有限公司"},{"count":11,"median":37.4,"avg":39.2,"store":"小米之家湖北潜江中心城专卖店","partner":"潜江酷动数码设备有限公司"},{"count":5,"median":29.2,"avg":43.9,"store":"小米之家湖北武汉蔡甸区中核世纪广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":5,"median":0.2,"avg":0.2,"store":"小米之家湖北黄石市下陆区团城山万达广场专卖店","partner":"湖北辰龙科贸有限公司"},{"count":7,"median":41,"avg":43.5,"store":"小米之家湖北荆门东宝区中天街月新广场专卖店","partner":"荆门帅昂商贸有限公司"},{"count":7,"median":35.7,"avg":638.4,"store":"小米之家湖北省黄冈市黄州区东门路专卖店","partner":"湖北谷高通讯有限公司"},{"count":3,"median":1319.5,"avg":1256.8,"store":"小米之家湖北省襄阳市谷城县粉水路一店专卖店","partner":"谷城县云帆通讯数码有限公司"}];
-let pSortKey='count',pSortAsc=false,sSortKey='count',sSortAsc=false;
-
+var partners = [{"name":"湖北盈泰寰宇通信工程有限公司","avg":16.4,"min":9.7,"median":16.4,"max":23.1,"count":2},{"name":"湖北因特微科技发展有限公司","avg":174.5,"min":0.2,"median":35.2,"max":5409.6,"count":39},{"name":"湖北省九广通讯有限责任公司","avg":35.2,"min":35.2,"median":35.2,"max":35.2,"count":1},{"name":"湖北展迅商贸有限公司","avg":84.6,"min":0.2,"median":84.6,"max":169,"count":2},{"name":"浠水九星通信有限公司","avg":28.8,"min":25.8,"median":28.8,"max":31.9,"count":2},{"name":"黄梅县炫翼商贸有限公司","avg":26.5,"min":26.5,"median":26.5,"max":26.5,"count":1},{"name":"京山市妍盈商贸有限公司","avg":32,"min":32,"median":32,"max":32,"count":1},{"name":"湖北鑫垦唯科技有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"武汉和众思创商贸发展有限公司","avg":163,"min":5.1,"median":45.9,"max":5775.1,"count":65},{"name":"湖北谷高通讯有限公司","avg":145.2,"min":0.2,"median":35.7,"max":4200.5,"count":41},{"name":"荆门帅昂商贸有限公司","avg":30.5,"min":0.2,"median":34.4,"max":63.4,"count":10},{"name":"湖北恒耀通信科技有限公司","avg":37.5,"min":0.2,"median":42,"max":70.2,"count":3},{"name":"来凤县灏诚科技有限公司","avg":174.8,"min":174.8,"median":174.8,"max":174.8,"count":1},{"name":"咸宁捷讯通电子有限公司","avg":23.7,"min":0.2,"median":23.7,"max":47.2,"count":2},{"name":"孝感市诚丰商贸有限责任公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"江陵县伟名商贸有限公司","avg":49.6,"min":49.6,"median":49.6,"max":49.6,"count":1},{"name":"小米之家商业有限公司","avg":432.6,"min":0.2,"median":0.2,"max":3172.1,"count":15},{"name":"武汉鑫隆世达商贸有限公司","avg":20.5,"min":0.2,"median":29.1,"max":32.2,"count":3},{"name":"钟祥市铭辉商贸有限公司","avg":526.8,"min":0.2,"median":526.8,"max":1053.4,"count":2},{"name":"麻城市云人汇新零售商贸有限公司","avg":1729.5,"min":1659.8,"median":1746.2,"max":1782.6,"count":3},{"name":"红安县超凡通讯器材有限公司","avg":5.9,"min":0.2,"median":0.2,"max":17.3,"count":3},{"name":"湖北讯华高新技术股份有限公司","avg":53.9,"min":0.2,"median":42.1,"max":994.1,"count":68},{"name":"谷城县云帆通讯数码有限公司","avg":1256.8,"min":41.5,"median":1319.5,"max":2409.4,"count":3},{"name":"武汉新兴连邦技术服务有限公司","avg":168.5,"min":5.8,"median":45.5,"max":4498.9,"count":74},{"name":"湖北尊驰科技有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"老河口市友联科技有限公司","avg":53,"min":53,"median":53,"max":53,"count":1},{"name":"枣阳市跨时空通讯有限公司","avg":506,"min":8.2,"median":44.7,"max":1465.1,"count":3},{"name":"湖北大业通信器材有限公司","avg":59.8,"min":39,"median":59.8,"max":80.6,"count":2},{"name":"公安县潺陵通讯设备有限公司","avg":33.4,"min":33.4,"median":33.4,"max":33.4,"count":1},{"name":"湖北辰龙科贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":6},{"name":"宜昌丰途商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":2},{"name":"湖北凯新通信有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"十堰市乐讯商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"襄阳畅宇商贸有限公司","avg":953.4,"min":6.1,"median":35.8,"max":8565.9,"count":13},{"name":"湖北九鼎通信有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"潜江酷动数码设备有限公司","avg":33.2,"min":0.2,"median":30.8,"max":73.3,"count":13},{"name":"丹江口市宏米贸易有限公司","avg":760.4,"min":31.2,"median":760.4,"max":1489.6,"count":2},{"name":"应城市联达数码有限公司","avg":2794.5,"min":2794.5,"median":2794.5,"max":2794.5,"count":1},{"name":"嘉鱼县嘉联通讯有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1},{"name":"湖北夷达科技有限公司","avg":4.6,"min":0.2,"median":0.2,"max":26.6,"count":6},{"name":"湖北宇泽永业数码科技有限公司","avg":128.1,"min":0.2,"median":33.4,"max":4390.8,"count":46},{"name":"松滋市合一通信设备有限公司","avg":39.1,"min":31.5,"median":38.1,"max":47.8,"count":6},{"name":"利川汇众通信有限责任公司","avg":114.1,"min":114.1,"median":114.1,"max":114.1,"count":1},{"name":"恩施州通信广场有限责任公司","avg":32.2,"min":0.2,"median":23.4,"max":107.1,"count":13},{"name":"孝感飞耀通讯设备有限公司","avg":24.1,"min":0.2,"median":23.4,"max":48.7,"count":3},{"name":"武汉电信实业有限责任公司","avg":15.4,"min":0.2,"median":0.2,"max":74.9,"count":9},{"name":"英山县陆星通讯有限责任公司","avg":43.7,"min":19.3,"median":29.6,"max":96.2,"count":4},{"name":"蕲春国联手机通讯有限公司","avg":1575.4,"min":1451.4,"median":1575.4,"max":1699.5,"count":2},{"name":"襄阳庆来电子科技有限公司","avg":35.2,"min":0.2,"median":32,"max":76.3,"count":6},{"name":"武汉和信通商贸有限公司","avg":0.2,"min":0.2,"median":0.2,"max":0.2,"count":1}];
+var stores = [{"count":16,"median":38.7,"avg":42.7,"store":"小米之家湖北宜昌西陵区东山大道专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":4,"median":40.4,"avg":63.7,"store":"小米之家湖北随州曾都区舜井大道专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":13,"median":38,"avg":58.1,"store":"小米之家湖北十堰市人民北路服销一体专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":12,"median":40.1,"avg":42.6,"store":"小米之家湖北武汉洪山区创意天地服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":5,"median":74.5,"avg":72.8,"store":"小米之家湖北武汉江夏区江夏大道电信专卖店","partner":"湖北谷高通讯有限公司"},{"count":11,"median":42.1,"avg":44.7,"store":"小米之家湖北武汉黄陂区德成中心广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":4,"median":29.6,"avg":43.7,"store":"小米之家湖北省黄冈市英山县时代广场专卖店","partner":"英山县陆星通讯有限责任公司"},{"count":13,"median":58.1,"avg":506.1,"store":"小米之家湖北武汉武昌区紫阳广场专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":6,"median":63.7,"avg":1081.3,"store":"小米之家武汉大学店","partner":"小米之家商业有限公司"},{"count":5,"median":24.8,"avg":20.3,"store":"小米之家湖北鄂州市鄂城区驰恒国际广场专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":5,"median":36.5,"avg":42.2,"store":"小米之家湖北襄阳樊城区长虹路蓝光大厦专卖店","partner":"襄阳庆来电子科技有限公司"},{"count":8,"median":43.8,"avg":51.2,"store":"小米之家湖北武汉洪山区万科广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":7,"median":31.6,"avg":44.8,"store":"小米之家湖北孝感市长征路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":9,"median":62.4,"avg":529.6,"store":"小米之家湖北武汉洪山区大悦城专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":10,"median":38,"avg":46,"store":"小米之家湖北武汉江汉区越秀国金中心专卖店","partner":"湖北因特微科技发展有限公司"},{"count":12,"median":28.9,"avg":34.8,"store":"小米之家湖北恩施和润城购物中心专卖店","partner":"恩施州通信广场有限责任公司"},{"count":5,"median":52,"avg":51.2,"store":"小米之家湖北武汉汉阳区四新华发未来荟专卖店","partner":"湖北因特微科技发展有限公司"},{"count":7,"median":35,"avg":41.6,"store":"小米之家湖北武汉江夏区世达广场专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":38.1,"avg":39.1,"store":"小米之家荆州市松滋市步行街专卖店","partner":"松滋市合一通信设备有限公司"},{"count":3,"median":0.2,"avg":0.2,"store":"小米之家湖北宜昌西陵区大洋百货专卖店","partner":"湖北夷达科技有限公司"},{"count":19,"median":48,"avg":123.4,"store":"小米之家湖北武汉汉阳区海天欢乐购服销一体专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":8,"median":0.2,"avg":0.2,"store":"小米之家湖北黄石市黄石港区万达广场汽车体验专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":7,"median":36.4,"avg":62.3,"store":"小米之家湖北天门西湖路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":13,"median":59.4,"avg":163.4,"store":"小米之家洪山区珞喻路季佳PAI专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":8,"median":31,"avg":38.1,"store":"小米之家湖北武汉江岸区大智路服销一体专卖店","partner":"武汉和众思创商贸发展有限公司"},{"count":5,"median":37.6,"avg":30.4,"store":"小米之家武汉武昌区销品茂专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":45.9,"avg":54.1,"store":"湖北武汉东西湖区199+服销一体","partner":"武汉新兴连邦技术服务有限公司"},{"count":8,"median":25.1,"avg":30.2,"store":"小米之家湖北武汉硚口区南国泛悦mall专卖店","partner":"湖北因特微科技发展有限公司"},{"count":4,"median":26.6,"avg":34.4,"store":"小米之家湖北省武汉市江汉区武汉江宸天街汽车体验店","partner":"武汉电信实业有限责任公司"},{"count":4,"median":47.4,"avg":54.2,"store":"小米之家湖北武汉江岸区季佳荟百步亭专卖店","partner":"湖北因特微科技发展有限公司"},{"count":10,"median":34.3,"avg":63.6,"store":"小米之家湖北武汉江汉区南国北都城市广场SOHO服销专卖店","partner":"武汉新兴连邦技术服务有限公司"},{"count":4,"median":20.9,"avg":24.1,"store":"小米之家湖北武汉汉阳区江腾广场专卖店","partner":"湖北因特微科技发展有限公司"},{"count":13,"median":35.8,"avg":953.4,"store":"小米之家湖北省襄阳樊城区大庆西路专卖店","partner":"襄阳畅宇商贸有限公司"},{"count":3,"median":37.6,"avg":1822.8,"store":"小米之家湖北武汉黄陂区中心百货专卖店","partner":"湖北因特微科技发展有限公司"},{"count":45,"median":47.6,"avg":48.2,"store":"小米之家湖北黄石西塞山区武商购物中心专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":26,"median":50.5,"avg":323.3,"store":"小米之家湖北武汉洪山区光谷资本大厦","partner":"武汉新兴连邦技术服务有限公司"},{"count":3,"median":44.7,"avg":506,"store":"小米之家湖北襄阳枣阳通讯广场专卖店","partner":"枣阳市跨时空通讯有限公司"},{"count":4,"median":0.2,"avg":0.2,"store":"小米之家湖北武汉武昌区亲橙万象汇专卖店","partner":"湖北宇泽永业数码科技有限公司"},{"count":6,"median":95.3,"avg":232.7,"store":"小米之家湖北武汉青山区武商MALL众圆专卖店","partner":"湖北讯华高新技术股份有限公司"},{"count":3,"median":1746.2,"avg":1729.5,"store":"小米之家湖北黄冈麻城龙池桥街道融辉路授权店","partner":"麻城市云人汇新零售商贸有限公司"},{"count":11,"median":37.4,"avg":39.2,"store":"小米之家湖北潜江中心城专卖店","partner":"潜江酷动数码设备有限公司"},{"count":5,"median":29.2,"avg":43.9,"store":"小米之家湖北武汉蔡甸区中核世纪广场专卖店","partner":"湖北谷高通讯有限公司"},{"count":5,"median":0.2,"avg":0.2,"store":"小米之家湖北黄石市下陆区团城山万达广场专卖店","partner":"湖北辰龙科贸有限公司"},{"count":7,"median":41,"avg":43.5,"store":"小米之家湖北荆门东宝区中天街月新广场专卖店","partner":"荆门帅昂商贸有限公司"},{"count":7,"median":35.7,"avg":638.4,"store":"小米之家湖北省黄冈市黄州区东门路专卖店","partner":"湖北谷高通讯有限公司"},{"count":3,"median":1319.5,"avg":1256.8,"store":"小米之家湖北省襄阳市谷城县粉水路一店专卖店","partner":"谷城县云帆通讯数码有限公司"}];
+var pSortKey='count',pSortAsc=false,sSortKey='count',sSortAsc=false;
 function renderPartners(){
-  const minC=parseInt(document.getElementById('pMinCount').value);
-  let data=partners.filter(p=>p.count>=minC);
-  data.sort((a,b)=>pSortAsc?(a[pSortKey]>b[pSortKey]?1:-1):(a[pSortKey]<b[pSortKey]?1:-1));
-  const tb=document.getElementById('partnerBody');
-  tb.innerHTML=data.map((p,i)=><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>).join('');
+  var minC=parseInt(document.getElementById('pMinCount').value);
+  var data=partners.filter(function(p){return p.count>=minC});
+  data.sort(function(a,b){return pSortAsc?(a[pSortKey]>b[pSortKey]?1:-1):(a[pSortKey]<b[pSortKey]?1:-1)});
+  var tb=document.getElementById('partnerBody');
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var p=data[i];
+    html+='<tr><td>'+p.name+'</td><td>'+p.count+'</td><td>'+p.avg+'</td><td>'+p.median+'</td><td>'+p.min+'</td><td>'+p.max+'</td></tr>';
+  }
+  tb.innerHTML=html;
 }
-
-function sortPartner(key){
-  if(pSortKey===key)pSortAsc=!pSortAsc;else{pSortKey=key;pSortAsc=true;}
-  renderPartners();
-}
-
+function sortPartner(key){if(pSortKey===key)pSortAsc=!pSortAsc;else{pSortKey=key;pSortAsc=true;}renderPartners();}
 function renderStores(){
-  const minC=parseInt(document.getElementById('sMinCount').value);
-  const pf=document.getElementById('sPartnerFilter').value;
-  let data=stores.filter(s=>s.count>=minC&&(!pf||s.partner===pf));
-  data.sort((a,b)=>sSortAsc?(a[sSortKey]>b[sSortKey]?1:-1):(a[sSortKey]<b[sSortKey]?1:-1));
-  const tb=document.getElementById('storeBody');
-  tb.innerHTML=data.map(s=><tr><td></td><td></td><td></td><td></td><td></td></tr>).join('');
+  var minC=parseInt(document.getElementById('sMinCount').value);
+  var pf=document.getElementById('sPartnerFilter').value;
+  var data=stores.filter(function(s){return s.count>=minC&&(!pf||s.partner===pf)});
+  data.sort(function(a,b){return sSortAsc?(a[sSortKey]>b[sSortKey]?1:-1):(a[sSortKey]<b[sSortKey]?1:-1)});
+  var tb=document.getElementById('storeBody');
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var s=data[i];
+    html+='<tr><td>'+s.store+'</td><td>'+s.partner+'</td><td>'+s.count+'</td><td>'+s.avg+'</td><td>'+s.median+'</td></tr>';
+  }
+  tb.innerHTML=html;
 }
+function sortStore(key){if(sSortKey===key)sSortAsc=!sSortAsc;else{sSortKey=key;sSortAsc=true;}renderStores();}
+var pu=[],seen={};
+for(var i=0;i<stores.length;i++){if(!seen[stores[i].partner]){seen[stores[i].partner]=true;pu.push(stores[i].partner);}}
+pu.sort();var sel=document.getElementById('sPartnerFilter');
+for(var i=0;i<pu.length;i++){var o=document.createElement('option');o.value=pu[i];o.textContent=pu[i];sel.appendChild(o);}
+renderPartners();renderStores();
+</script></body></html>
 
-function sortStore(key){
-  if(sSortKey===key)sSortAsc=!sSortAsc;else{sSortKey=key;sSortAsc=true;}
-  renderStores();
-}
-
-// 初始化合作商筛选下拉
-const partners_unique = [...new Set(stores.map(s=>s.partner))].sort();
-const sel=document.getElementById('sPartnerFilter');
-partners_unique.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o);});
-
-renderPartners();
-renderStores();
-</script>
-</body>
-</html>
